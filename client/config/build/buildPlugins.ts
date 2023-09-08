@@ -9,7 +9,8 @@ export function buildPlugins({paths, isDev}: BuildOptions): webpack.WebpackPlugi
       __IS_DEV__: JSON.stringify(isDev),
     }),
     new HtmlWebpackPlugin({
-      template: paths.html
+      template: paths.html,
+      favicon: paths.favicon
     }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
