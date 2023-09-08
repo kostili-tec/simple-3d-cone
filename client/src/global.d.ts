@@ -6,4 +6,4 @@ declare module '*.scss' {
   export = classNames;
 }
 
-declare const __IS_DEV__: boolean
+declare const __IS_DEV__: boolean;

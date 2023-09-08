@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { CameraControls } from '@react-three/drei';
 
 import { TriangularCone } from '../TriangularCone';
 import { FormData } from '../FormData/FormData';
-import { IConeData, IConeCalculatedData } from '../../types/types';
 import { Box } from '../Box';
+import { IConeData, IConeCalculatedData } from '../../types/types';
 
 export const ConeScene = () => {
   const [coneData, setConeData] = useState<IConeData>({
@@ -21,7 +21,8 @@ export const ConeScene = () => {
 
   return (
     <div>
-      <Canvas camera={{ position: [50, 50, 50], fov: 90 }} style={{ height: 700 }}>
+      <Canvas camera={{ position: [0, 0, 20] }} style={{ height: 700 }}>
+        <CameraControls />
         <color attach="background" args={['#000000']} />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
@@ -30,12 +31,10 @@ export const ConeScene = () => {
         ) : (
           <Box />
         )}
-        <OrbitControls />
       </Canvas>
       <FormData
         coneData={coneData}
         setConeData={setConeData}
-        calculatedData={calculatedData}
         setCalculatedData={setCalculatedData}
       />
     </div>

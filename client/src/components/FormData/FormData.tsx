@@ -1,34 +1,25 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { FormInput } from '../UI/FormInput/FormInput';
-import classes from './FormData.module.scss';
-import { IConeCalculatedData, IConeData } from '../../types/types';
 import { TriangulationService } from '../../API/TriangulationService';
+import { IConeCalculatedData, IConeData } from '../../types/types';
+import classes from './FormData.module.scss';
 
 interface FormDataProps {
   coneData: IConeData;
   setConeData: React.Dispatch<React.SetStateAction<IConeData>>;
-  calculatedData: IConeCalculatedData;
   setCalculatedData: React.Dispatch<React.SetStateAction<IConeCalculatedData>>;
 }
 
-export const FormData: FC<FormDataProps> = ({
-  coneData,
-  setConeData,
-  calculatedData,
-  setCalculatedData,
-}) => {
+export const FormData: FC<FormDataProps> = ({ coneData, setConeData, setCalculatedData }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(coneData);
     try {
       const result = await TriangulationService(coneData);
       setCalculatedData({
         indices: [...result.indices],
         vertices: [...result.vertices],
       });
-      console.log(result);
-      console.log('calculatedData', calculatedData);
     } catch (error) {
       throw new Error(error);
     }
@@ -40,8 +31,6 @@ export const FormData: FC<FormDataProps> = ({
       ...coneData,
       [name]: Number(value),
     });
-    console.log(name);
-    console.log(coneData);
   };
 
   return (

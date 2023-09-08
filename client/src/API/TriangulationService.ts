@@ -8,7 +8,6 @@ const API_url = {
 export const TriangulationService = async (sendData: SendData): Promise<ResponseData> => {
   const url = API_url.base + API_url.additional;
   const { height, radius, segments } = sendData;
-  console.log(url);
   if (height < 1 || radius < 3 || segments < 3) throw new Error('Incorrect data');
   try {
     const response = await fetch(url, {
