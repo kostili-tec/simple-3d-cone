@@ -8,6 +8,7 @@ async function bootstrap() {
   configDotenv({ path: '.env' });
   const PORT = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(PORT, () =>
     console.log(`Server started on port = ${PORT} `),
