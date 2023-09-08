@@ -30,7 +30,6 @@ export const ConeScene = () => {
         ) : (
           <Box />
         )}
-        ;
         <OrbitControls />
       </Canvas>
       <FormData
