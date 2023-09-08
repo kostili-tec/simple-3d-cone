@@ -36,7 +36,8 @@ module.exports = {
         "prettier/prettier": [
             "error",
         ],
-        "react/react-in-jsx-scope": 0
+        "react/react-in-jsx-scope": 0,
+        "react/no-unknown-property": "off",
     },
     "settings": {
         "react": {
