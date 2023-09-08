@@ -6,6 +6,7 @@ import { TriangularCone } from '../TriangularCone';
 import { FormData } from '../FormData/FormData';
 import { Box } from '../Box';
 import { IConeData, IConeCalculatedData } from '../../types/types';
+import { LoadingSpinner } from '../UI/LoadingSpinner/LoadingSpinner';
 
 export const ConeScene = () => {
   const [coneData, setConeData] = useState<IConeData>({
@@ -18,6 +19,8 @@ export const ConeScene = () => {
     indices: [],
     vertices: [],
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div>
@@ -36,7 +39,10 @@ export const ConeScene = () => {
         coneData={coneData}
         setConeData={setConeData}
         setCalculatedData={setCalculatedData}
+        setIsLoading={setIsLoading}
       />
+      {isLoading && <LoadingSpinner />}
+      {/* <LoadingSpinner /> */}
     </div>
   );
 };

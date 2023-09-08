@@ -9,18 +9,27 @@ interface FormDataProps {
   coneData: IConeData;
   setConeData: React.Dispatch<React.SetStateAction<IConeData>>;
   setCalculatedData: React.Dispatch<React.SetStateAction<IConeCalculatedData>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const FormData: FC<FormDataProps> = ({ coneData, setConeData, setCalculatedData }) => {
+export const FormData: FC<FormDataProps> = ({
+  coneData,
+  setConeData,
+  setCalculatedData,
+  setIsLoading,
+}) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const result = await TriangulationService(coneData);
       setCalculatedData({
         indices: [...result.indices],
         vertices: [...result.vertices],
       });
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       throw new Error(error);
     }
   };
