@@ -1,7 +1,8 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { getCoords } from '../utils/triangleCoords';
+
+import { IConeCalculatedData as TriangularConeProps } from '../types/types';
 
 interface ConeViewerProps {
   height: number;
@@ -9,7 +10,7 @@ interface ConeViewerProps {
   segments: number;
 }
 
-export const TriangularCone: FC<ConeViewerProps> = ({ height, radius, segments }) => {
+export const TriangularCone: FC<TriangularConeProps> = ({ indices, vertices }) => {
   const meshRef = useRef<THREE.Mesh>();
 
   /*   useFrame(() => {
@@ -18,8 +19,6 @@ export const TriangularCone: FC<ConeViewerProps> = ({ height, radius, segments }
       meshRef.current.rotation.y += 0.01;
     }
   }); */
-
-  const { indices, vertices } = getCoords(height, radius, segments);
 
   // Создаем геометрию и материал
   const geometry = new THREE.BufferGeometry();

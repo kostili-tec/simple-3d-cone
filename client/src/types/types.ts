@@ -3,3 +3,8 @@ export interface IConeData {
   radius: number;
   segments: number;
 }
+
+export interface IConeCalculatedData {
+  vertices: Array<number>;
+  indices: Array<number>;
+}

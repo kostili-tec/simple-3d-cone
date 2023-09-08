@@ -1,13 +1,4 @@
-interface SendData {
-  height: number;
-  radius: number;
-  segments: number;
-}
-
-interface ResponseData {
-  vertices: Array<number>;
-  indices: Array<number>;
-}
+import { IConeData as SendData, IConeCalculatedData as ResponseData } from '../types/types';
 
 const APIurl = {
   base: 'https://3d-cone-server.cyclic.cloud/',
